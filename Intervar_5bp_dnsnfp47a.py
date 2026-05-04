@@ -3,8 +3,9 @@
 # Author: Lee Quan (leequan@gmail.com)
 # Created Time: 2015-11-10 19:15:32 Tuesday 
 # File Name: InterVar.py File type: python
-# Last Change:.
+# Last Change: 2026-5-4 19:15:32 Tuesday
 # Description: python script for  Interpretation of Pathogenetic Benign
+# update: avsnp151 clinvar_20250721 dbnsfp47a
 #########################################################################
 
 import copy,logging,os,io,re,time,sys,platform,optparse,gzip,glob
