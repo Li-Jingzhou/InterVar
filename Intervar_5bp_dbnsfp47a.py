@@ -21,7 +21,7 @@ Copyright (C) 2016 Wang Genomic Lab
 """
 
 usage = """Usage: %prog [OPTION] -i  INPUT -o  OUTPUT ...
-       %prog  --config=config.ini ...
+       %prog  --config=config_dbnsfp47a.ini ...
 """
 
 description = """=============================================================================
@@ -1360,7 +1360,7 @@ def check_BS1(line,Freqs_flgs,Allels_flgs):
     cutoff=0.005 # disorder cutoff
     try:
         cutoff=float(paras['disorder_cutoff']) # user's disorder cutoff
-        #print("Warning: Customized  disease cutoff %s in config.ini" % (cutoff)) 
+        #print("Warning: Customized  disease cutoff %s in config_dbnsfp47a.ini" % (cutoff)) 
     except ValueError:
         cutoff=0.005
     else:
@@ -1933,7 +1933,7 @@ def main():
     parser.add_option("-v", action="version", help=optparse.SUPPRESS_HELP, dest="version")
     
     parser.add_option("-c", "--config", dest="config", action="store",
-                  help="The config file of all options. it is for your own configure file.You can edit all the options in the configure and if you use this options,you can ignore all the other options bellow", metavar="config.ini")
+                  help="The config file of all options. it is for your own configure file.You can edit all the options in the configure and if you use this options,you can ignore all the other options bellow", metavar="config_dbnsfp47a.ini")
 
     parser.add_option("-b", "--buildver", dest="buildver", action="store",
                   help="The genomic build version, it can be hg19 or hg38 , will support other version later", metavar="hg19")
@@ -1978,7 +1978,7 @@ def main():
 
     parser.add_option_group(group)
     group = optparse.OptionGroup(parser, "Examples",
-                                """./InterVar.py -c config.ini  # Run the examples in config.ini
+                                """./InterVar.py -c config_dbnsfp47a.ini  # Run the examples in config_dbnsfp47a.ini
                                  ./InterVar.py  -b hg19 -i your_input  --input_type=VCF  -o your_output 
                                 """)
     parser.add_option_group(group)
@@ -1996,14 +1996,14 @@ def main():
 
 
 
-    config_file = os.path.join(os.path.dirname(__file__),"config.ini") 
+    config_file = os.path.join(os.path.dirname(__file__),"config_dbnsfp47a.ini") 
     if os.path.isfile(config_file):
         config.read(config_file)
         sections = config.sections()
         for section in sections:
             ConfigSectionMap(config,section)    
     else:
-        print("Error: The default configure file of [ config.ini ] is not here, exit! Please redownload the InterVar.")
+        print("Error: The default configure file of [ config_dbnsfp47a.ini ] is not here, exit! Please redownload the InterVar.")
         sys.exit()
 
 #begin to process user's options:
@@ -2114,7 +2114,7 @@ def main():
 
     cutoff=float(paras['disorder_cutoff']) # user's disorder cutoff
     if cutoff != 0.005 :
-        print("Warning: Customized  disease cutoff %s in config.ini, not suggested as 0.005" % (cutoff)) 
+        print("Warning: Customized  disease cutoff %s in config_dbnsfp47a.ini, not suggested as 0.005" % (cutoff)) 
 
     read_datasets()
     
