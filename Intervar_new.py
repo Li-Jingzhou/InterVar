@@ -1781,7 +1781,36 @@ def assign(BP,line,Freqs_flgs,Funcanno_flgs,Allels_flgs):
     cls=line.split('\t')
     if len(cls)>1:#esp6500siv2_all 1000g2015aug_all gnomAD_genome_ALL    
         BP_out=classfy(PVS1,PS,PM,PP,BA1,BS,BP,Allels_flgs,cls)
-        line_t="%s PVS1=%s PS=%s PM=%s PP=%s BA1=%s BS=%s BP=%s" %(BP_out,PVS1,PS,PM,PP,BA1,BS,BP)
+        
+        # === 新增的化简格式逻辑 ===
+        active_evidence = []
+        if int(PVS1) > 0: 
+            active_evidence.append("PVS1")
+            
+        for i, val in enumerate(PS):
+            if int(val) > 0: active_evidence.append("PS%d" % (i+1))
+            
+        for i, val in enumerate(PM):
+            if int(val) > 0: active_evidence.append("PM%d" % (i+1))
+            
+        for i, val in enumerate(PP):
+            if int(val) > 0: active_evidence.append("PP%d" % (i+1))
+            
+        if int(BA1) > 0: 
+            active_evidence.append("BA1")
+            
+        for i, val in enumerate(BS):
+            if int(val) > 0: active_evidence.append("BS%d" % (i+1))
+            
+        for i, val in enumerate(BP):
+            if int(val) > 0: active_evidence.append("BP%d" % (i+1))
+
+        # 拼接非空证据项，如果没有命中任何证据，则只保留分类结果
+        if active_evidence:
+            line_t = "%s %s" % (BP_out, " + ".join(active_evidence))
+        else:
+            line_t = BP_out
+        # ==========================
 
         #print("%s " % BP_out)
         BP_out=line_t
