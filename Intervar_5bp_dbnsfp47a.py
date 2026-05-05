@@ -1784,7 +1784,7 @@ def assign(BP,line,Freqs_flgs,Funcanno_flgs,Allels_flgs):
     if len(cls)>1:#esp6500siv2_all 1000g2015aug_all gnomAD_genome_ALL    
         BP_out=classfy(PVS1,PS,PM,PP,BA1,BS,BP,Allels_flgs,cls)
         
-        # === 新增的化简格式逻辑 ===
+        # === New Simplification Formatting Logic ===
         active_evidence = []
         if int(PVS1) > 0: 
             active_evidence.append("PVS1")
@@ -1807,7 +1807,7 @@ def assign(BP,line,Freqs_flgs,Funcanno_flgs,Allels_flgs):
         for i, val in enumerate(BP):
             if int(val) > 0: active_evidence.append("BP%d" % (i+1))
 
-        # 拼接非空证据项，如果没有命中任何证据，则只保留分类结果
+        # Concatenate non-empty evidence items. If no evidence is matched, retain only the classification result.
         if active_evidence:
             line_t = "%s %s" % (BP_out, " + ".join(active_evidence))
         else:
